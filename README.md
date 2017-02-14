@@ -11,7 +11,7 @@ We choose MIT License since it is a permissive license that is short and to the 
 
 ### Directory Structure
 We divide our directory into four parts: data, code, results and maps.  
-We plan to store all our data (both inputs and outputs) in 'data' directory, then all the codes for the software we design in 'code' directory. Meanwhile, after the work of machine learning the results would be collected and put into the results directory. Based on work above, 'maps' directory is for our visiualization result.
+We plan to store all our data (both inputs and outputs) in 'data' directory, then all the codes for the software we design in 'code' directory. Meanwhile, the results obtained from machine learning would be collected and stored into the results directory. Based on work above, 'maps' directory is for our visualizations.
 
 Here is a simple tree plot of the current structure:
 ```
