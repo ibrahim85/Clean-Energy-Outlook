@@ -10,7 +10,7 @@ We chose MIT License since is a permissive license that is short and to the poin
 We divide our directory into four parts: data, code, results and maps.  
 We plan to store all our data (both inputs and outputs) in data directory, then all the codes for the software we design in code directory. Meanwhile, after the work of machine learning the results would be collected and put into the results directory. Based on those prior work, maps directory would be for our visiualization outcome.
 
-Here is a simple tree plot of the structure:
+Here is a simple tree plot of the current structure:
 ```
 ├── LICENSE
 ├── README.md
