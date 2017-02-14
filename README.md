@@ -15,6 +15,8 @@ Here is a simple tree plot of the current structure:
 ├── LICENSE
 ├── README.md
 ├── code
+│   ├── data_clean
+│   └── ml
 ├── data
 │   ├── HYTCP
 │   │   ├── inputs
@@ -29,5 +31,7 @@ Here is a simple tree plot of the current structure:
 │       ├── inputs
 │       └── outputs
 ├── maps
+│   ├── dynamic
+│   └── interactive
 └── results
 ```
