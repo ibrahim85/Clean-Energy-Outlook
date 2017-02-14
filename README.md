@@ -16,6 +16,18 @@ Here is a simple tree plot of the structure:
 ├── README.md
 ├── code
 ├── data
+│   ├── HYTCP
+│   │   ├── inputs
+│   │   └── outputs
+│   ├── NUETP
+│   │   ├── inputs
+│   │   └── outputs
+│   ├── SOEGP
+│   │   ├── inputs
+│   │   └── outputs
+│   └── WYTCP
+│       ├── inputs
+│       └── outputs
 ├── maps
 └── results
 ```
