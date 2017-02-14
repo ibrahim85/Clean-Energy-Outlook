@@ -14,6 +14,7 @@ User (Primary)
 **Steps:**  
 * User selects state from the map of the United States  
 * The energy outlook of the state is displayed  
+
 **Issues:**  
 How to implement?  
 
