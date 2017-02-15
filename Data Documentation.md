@@ -10,9 +10,9 @@ https://www.eia.gov/state/seds/seds-data-complete.php
 * **Data Model:**  
 Specific columns to focus on:  
 **HYTCP**  
-Hydroelectricity, total net generation
+Hydroelectricity, total net generation  
 **WYTCP**  
-Wind electricity, total net generation.
+Wind electricity, total net generation  
 **SOEGP**  
 Photovoltaic and solar thermal electricity net generation in the electric power sector  
 **NUETP**  
