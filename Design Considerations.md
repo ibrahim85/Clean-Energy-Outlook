@@ -36,23 +36,23 @@ Figures/Interaction Diagrams go here.
 * Use:  
 Allows primary actor to view past data and future trends in clean energy for the selected state.  
 * Input:  
-User selects a state and the types of energy to view.  
+User selects a specific state and types of energy to view.  
 * Output:  
-Display past energy data and future trends of the selected energies for the selected state.  
+Display past energy production data with the time axis and future trends of the selected energies for the selected state.  
 
 `state_selector`  
 * Use:  
-Selects a state and displays trends in clean energy.  
+Selects a state and displays trends in different kinds of clean energies.  
 * Input:  
-Takes input from user  
+Gets the input from user.
 * Output:  
-Displays the expanded map of the state and shows trends in clean energy.  
+Displays the expanded map of the state and shows trends of clean energies.  
 
 `regression`  
 * Use:  
 Performs regression on the training data and displays plot of future trends based on user specifications.  
 * Input:  
-State and types of energy selected by users.  
+States and types of energy selected by users.  
 * Output:  
 Plot of future energy trends for a particular state.  
 
