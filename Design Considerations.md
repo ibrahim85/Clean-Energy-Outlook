@@ -57,6 +57,57 @@ User input request a state
 **Issues:**  
 * How much weight does each factor has on the future of this clean energy?  
 
-### Figures/Interaction Diagrams
+## Figures/Interaction Diagrams
 
 Figures/Interaction Diagrams go here.  
+
+## Components
+
+`interface`
+* Use:  
+Allows primary actor to view past data and future trends in clean energy for the selected state.  
+* Input:  
+User selects a state and the types of energy to view.  
+* Output:  
+Display past energy data and future trends of the selected energies for the selected state.  
+
+`state_selector`  
+* Use:  
+* Input:  
+* Output:  
+
+`regression`  
+* Use:  
+Performs regression on the training data and displays plot of future trends based on user specifications.  
+* Input:  
+State and types of energy selected by used.  
+* Output:  
+Plot of future energy trends for a particular state.  
+
+`solar_energy_economics`  
+* Use:  
+Predicts installation costs for PV energy based on future trends.  
+* Input:  
+State, The Open PV Project, Future trends in solar energy, and year under consideration.  
+* Output:  
+Predicted installation cost based on past costs.  
+
+`wind_energy_economics`
+* Use:  
+* Input:  
+* Output:  
+
+`hydro_energy_economics`
+* Use:  
+* Input:  
+* Output:  
+
+`nuclear_energy_economics`
+* Use:  
+* Input:  
+* Output:  
+
+## Notes
+* Not sure how to build GUI.
+* Still looking for datasets for wind, hydro, and nuclear energy economics.
+* Possibility to include more datasets.
