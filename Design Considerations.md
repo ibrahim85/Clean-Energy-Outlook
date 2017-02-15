@@ -1,6 +1,6 @@
 ## Overview
 
-Clean Energy Outlook is a software that reads in energy generation data from 1960 to 2014 of various states of the United States and predicts the energy outlook of each state for the next 5 years. Software will be useful for investors and policy makers in renewable energy. Investors in clean energy can use this software to identify states where clean energy has high potential. Policy makers can also use this software to develop clean energy policies for different states.
+Clean Energy Outlook is a software that reads in energy generation data from 1960 to 2014 of various states of the United States and predicts the energy outlook of each state for the next 5 years. Software will be useful for investors and policy makers in renewable energy. Investors in clean energy can use this software to identify states where clean energy have higher potential. Policy makers can also use this software to develop clean energy policies and investment plans for different states.
 
 ## Use Case  
 
@@ -52,7 +52,7 @@ Displays the expanded map of the state and shows trends in clean energy.
 * Use:  
 Performs regression on the training data and displays plot of future trends based on user specifications.  
 * Input:  
-State and types of energy selected by used.  
+State and types of energy selected by users.  
 * Output:  
 Plot of future energy trends for a particular state.  
 
@@ -68,7 +68,7 @@ Predicted installation cost based on past costs.
 * Use:  
 Predicts installation costs for wind energy based on future trends.  
 * Input:  
-State, Wind Energy Database, Future trends in wind energy, Factors to be considered, and year under consideration.  
+State, Wind Energy Database, Future trends in wind energy, Factors to be considered, and years under consideration.  
 * Output:  
 Predicted installation cost based on past costs.  
 
@@ -76,7 +76,7 @@ Predicted installation cost based on past costs.
 * Use:  
 Predicts installation costs for Hydro energy based on future trends.  
 * Input:  
-State, Hydro Energy Database, Future trends in Hydro energy, Factors to be considered, and year under consideration.  
+State, Hydro Energy Database, Future trends in Hydro energy, Factors to be considered, and years under consideration.  
 * Output:  
 Predicted installation cost based on past costs.  
 
