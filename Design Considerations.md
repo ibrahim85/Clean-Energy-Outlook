@@ -1,9 +1,10 @@
 ## Overview
-Big picture of software goes here.
+
+Clean Energy Outlook is a software that reads in energy generation data from 1960 to 2014 of various states of the United States and predicts the energy outlook of each state for the next 5 years. Software will be useful for investors and policy makers in renewable energy. Investors in clean energy can use this software to identify states where clean energy has high potential. Policy makers can also use this software to develop clean energy policies for different states.
 
 ## Use Cases
 
-### 1. Predict Energy Outlook for a State in the United States
+### 1. Predict Energy Outlook for a State in the United States  
 **Use Case Name:**   
 Predict Energy Outlook for a State in the United States  
 **Description:**   
@@ -13,16 +14,16 @@ User (Primary)
 **Assumptions:**  
 **Steps:**  
 * User selects states from the map of the United States  
-* The energy outlook of the state is shown from the interactive map
+* The energy outlook of the state is shown from the interactive map  
 
 **Issues:**  
 How to implement?  
 
 ### 2. Optimization of Local Energy Structure.  
 **Use Case Name:**  
-optimization of local energy structure.  
+Optimization of local energy structure.  
 **Description:**  
-according to the cost and developing trend of different energy type, we can offer advice to investors and companies, which would be helpful for the future plan of clean energy investment within different states.  
+According to the cost and developing trend of different energy type, we can offer advice to investors and companies, which would be helpful for the future plan of clean energy investment within different states.  
 **Actors:**  
 User (Primary)  
 **Assumptions:**  
