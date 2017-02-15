@@ -56,6 +56,7 @@ User input request a state
 
 **Issues:**  
 * How much weight does each factor has on the future of one kind of clean energy?  
+* How to create an interactive map of the US?
 
 ## Figures/Interaction Diagrams
 
@@ -73,8 +74,11 @@ Display past energy data and future trends of the selected energies for the sele
 
 `state_selector`  
 * Use:  
+Selects a state and displays trends in clean energy.  
 * Input:  
+Takes input from user  
 * Output:  
+Displays the expanded map of the state and shows trends in clean energy.  
 
 `regression`  
 * Use:  
@@ -88,26 +92,35 @@ Plot of future energy trends for a particular state.
 * Use:  
 Predicts installation costs for PV energy based on future trends.  
 * Input:  
-State, The Open PV Project, Future trends in solar energy, and year under consideration.  
+State, The Open PV Project, Future trends in solar energy, Factors to be considered, and year under consideration.  
 * Output:  
 Predicted installation cost based on past costs.  
 
 `wind_energy_economics`
 * Use:  
+Predicts installation costs for wind energy based on future trends.  
 * Input:  
+State, Wind Energy Database, Future trends in wind energy, Factors to be considered, and year under consideration.  
 * Output:  
+Predicted installation cost based on past costs.  
 
 `hydro_energy_economics`
 * Use:  
+Predicts installation costs for Hydro energy based on future trends.  
 * Input:  
+State, Hydro Energy Database, Future trends in Hydro energy, Factors to be considered, and year under consideration.  
 * Output:  
+Predicted installation cost based on past costs.  
 
 `nuclear_energy_economics`
 * Use:  
+Predicts installation costs for nuclear energy based on future trends.  
 * Input:  
+State, Nuclear Energy Database, Future trends in nuclear energy, Factors to be considered, and year under consideration.  
 * Output:  
+Predicted installation cost based on past costs.  
 
 ## Notes
-* Not sure how to build GUI.
-* Still looking for datasets for wind, hydro, and nuclear energy economics.
-* Possibility to include more datasets.
+* Still looking for datasets for wind, hydro, and nuclear energy economics.  
+* Not sure how to build GUI and maps of the US.  
+* Possibility to include more datasets.  
