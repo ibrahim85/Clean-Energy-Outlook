@@ -2,62 +2,29 @@
 
 Clean Energy Outlook is a software that reads in energy generation data from 1960 to 2014 of various states of the United States and predicts the energy outlook of each state for the next 5 years. Software will be useful for investors and policy makers in renewable energy. Investors in clean energy can use this software to identify states where clean energy has high potential. Policy makers can also use this software to develop clean energy policies for different states.
 
-## Use Cases
+## Use Case  
 
-### 1. Predict Energy Outlook for a State in the United States  
-**Use Case Name:**   
-Predict Energy Outlook for a State in the United States  
-**Description:**   
-Predict Energy Outlook for a State in the United States using past 50 years data.  
-**Actors:**   
-User (Primary)  
-**Assumptions:**  
-**Steps:**  
-* User selects states from the map of the United States  
-* The energy outlook of the state is shown from the interactive map  
-
-**Issues:**  
-How to implement?  
-
-### 2. Optimization of Local Energy Structure.  
 **Use Case Name:**  
-Optimization of local energy structure.  
-**Description:**  
-According to the cost and developing trend of different energy type, we can offer advice to investors and companies, which would be helpful for the future plan of clean energy investment within different states.  
-**Actors:**  
-User (Primary)  
-**Assumptions:**  
-**Steps:**  
-* calculate the cost of the four energy type and compare the past as well as future productive trends of them  
-* compare their development potentials and come to the conclusion  
-
-**Issues:**  
-It might be hard to collect cost data for some of energies.
-
-### Combine to one user case
-###
-**Use Case Name:**  
-Clean energy(photovoltaic) industry outlook and energy source structure optimization  
+Predict clean energy industry outlook for a state in the United States and display the installation costs for the predicted increase in clean energy.  
 
 **Description:**   
-Using the energy sector information from the last 50 years, predict the market and need for solar energy in near future for a specific state.  
+For one state, the total energy demands over the years will go up with the increase of population and economy. The energy supplied by clean energy sources is bound to increase. Using the energy sector information from the last 50 years, predict the market and need for solar energy in near future for a specific state. With such predictions for all states, we can generate an overall outlook of clean energy in the United States.  
 
 **Actors:**     
-User input request a state   
+User (Primary)   
 
 **Assumptions:**  
-* For one state, the total energy demands over the years will go up with the increase of popultation and economy. The energy supplied by traditional energy resource and clean energy resource will therefore, show a corresponding increase with varied growth rates.  
-* A remarkable increase would be available in some areas with the advantage of solar radiation resource and other relevant technologies and during the period when solar cell development is much popular here.  
-* The future of certain clean energy type (solar energy) may or may not be suitable for a specific state due to above reasons.  
+* Factors that are not considered are neglected.  
 
 **Steps:**  
-* Based on the trend of different energy sectors (both clean and traditional) within a state, predict the demand and feasibility of solar energy development in the next 5 years.  
-* With a specified state, the corresponding data prediction and visualization would be displayed.  
-* With predictions for all states, we can generate an overall outlook of this type of clean energy in America.  
+* User selects a state from the interactive map.  
+* Displays the demand and future trends of clean energy like wind, solar, hydro, and nuclear in the next 5 years for the selected state.  
+* Display the installation cost of the predicted increase in clean energy.  
 
 **Issues:**  
 * How much weight does each factor has on the future of one kind of clean energy?  
-* How to create an interactive map of the US?
+* How to create an interactive map of the US?  
+* Difficult to collect installation cost data for some of energies.  
 
 ## Figures/Interaction Diagrams
 
@@ -65,7 +32,7 @@ Figures/Interaction Diagrams go here.
 
 ## Components
 
-`interface`
+`interface`  
 * Use:  
 Allows primary actor to view past data and future trends in clean energy for the selected state.  
 * Input:  
@@ -97,7 +64,7 @@ State, The Open PV Project, Future trends in solar energy, Factors to be conside
 * Output:  
 Predicted installation cost based on past costs.  
 
-`wind_energy_economics`
+`wind_energy_economics`  
 * Use:  
 Predicts installation costs for wind energy based on future trends.  
 * Input:  
@@ -105,7 +72,7 @@ State, Wind Energy Database, Future trends in wind energy, Factors to be conside
 * Output:  
 Predicted installation cost based on past costs.  
 
-`hydro_energy_economics`
+`hydro_energy_economics`  
 * Use:  
 Predicts installation costs for Hydro energy based on future trends.  
 * Input:  
@@ -113,7 +80,7 @@ State, Hydro Energy Database, Future trends in Hydro energy, Factors to be consi
 * Output:  
 Predicted installation cost based on past costs.  
 
-`nuclear_energy_economics`
+`nuclear_energy_economics`  
 * Use:  
 Predicts installation costs for nuclear energy based on future trends.  
 * Input:  
@@ -121,7 +88,7 @@ State, Nuclear Energy Database, Future trends in nuclear energy, Factors to be c
 * Output:  
 Predicted installation cost based on past costs.  
 
-## Notes
+## Notes  
 * Still looking for datasets for wind, hydro, and nuclear energy economics.  
 * Not sure how to build GUI and maps of the US.  
 * Possibility to include more datasets.  
