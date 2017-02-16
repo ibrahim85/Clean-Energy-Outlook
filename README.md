@@ -38,5 +38,6 @@ Here is a simple tree plot of the current structure:
 │   └── interactive
 └── results
 ```
-A flow map of our project:
+### Flow Map  
+  
 <img src = "Picture1.png">
