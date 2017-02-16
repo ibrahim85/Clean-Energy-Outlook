@@ -39,4 +39,4 @@ Here is a simple tree plot of the current structure:
 └── results
 ```
 A flow map of our project:
-<img src = "files/Picture1.png">
+<img src = "Picture1.png">
