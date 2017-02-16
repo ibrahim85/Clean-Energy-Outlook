@@ -40,4 +40,4 @@ Here is a simple tree plot of the current structure:
 ```
 ### Flow Map  
   
-<img src = "Picture1.png">
+<img src = "flowchart.png">
