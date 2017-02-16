@@ -4,7 +4,7 @@ Energy production and consumption data from multiple sources like coal, natural 
 * **Link**  
 https://www.eia.gov/state/seds/seds-data-complete.php
 * **Dimensionality:**  
-58 columns, covering year 1960 to 2014  
+58 columns, covering year 1960 to 2014 ,(first three columns are Data_Status,State and MSN
 * **Size:**  
 6660 rows, covering multiple energy sectors for all 50 states  
 * **Data Model:**  
