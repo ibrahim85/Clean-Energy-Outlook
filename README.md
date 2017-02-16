@@ -39,6 +39,4 @@ Here is a simple tree plot of the current structure:
 └── results
 ```
 A flow map of our project:
-%matplotlib inline
-<img src="files/Picture1.png">
-![title](img/Picture1.png)
+<img src = "files/Picture1.png">
