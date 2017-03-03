@@ -54,4 +54,4 @@ Here is a simple tree plot of the current structure:
 ```
 ### Flow Map  
 
-<img src = "doc/flowchart.png">
+<img src = "Clean-Energy-Outlook/doc/flowchart.png">
