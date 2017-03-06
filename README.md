@@ -59,4 +59,3 @@ Here is a simple tree plot of the current structure:
 ### Acknowledgements
 * David Beck
 * Jim Pfaendtner
-* Clean Energy Institute, University of Washington
