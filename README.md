@@ -1,5 +1,4 @@
-# Clean-Energy-Outlook
-This is where we examine and map the clean world!
+<img src = "Clean-Energy-Outlook/doc/Images/Logo.jpg">
 
 ### Due Mar. 15, 2017 at 5PM
 
