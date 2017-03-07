@@ -1,4 +1,6 @@
-<img src = "Clean-Energy-Outlook/doc/Images/Logo.jpg">
+<div align="center">
+  <img src="Clean-Energy-Outlook/doc/Images/Logo.jpg"><br>
+</div>
 
 ### Due Mar. 15, 2017 at 5PM
 
