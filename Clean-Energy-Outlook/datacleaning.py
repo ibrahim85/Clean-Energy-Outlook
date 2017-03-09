@@ -48,3 +48,22 @@ def add_msn(state_list,parameter):
         df_r.rename(columns={'Data':parameter}, inplace = True)
         df_r.to_csv('Data/Data_States/%s.csv' %i, encoding='utf-8', index=False)
     return
+
+def climate(data,param,statelist):
+    for i in statelist:
+        if i == 'US':
+            continue
+        dforigin = pd.read_csv('Data/Data_States/%s.csv' %i)
+        dfstate=data[data.State==statesdic['%s' %i]]
+        dftoadd=dfstate[['Year',param]]
+        dfnew=pd.merge(dforigin, dftoadd,on='Year',how='outer')
+        dfnew.to_csv('Data/Data_States/%s.csv'%i, encoding='utf-8', index=False)
+    return
+
+def oil_price(oil_data,statelist):
+    oiltoadd=oil_data[14:]
+    for i in statelist:
+        dforigin = pd.read_csv('Data/Data_States/%s.csv' %i)
+        dfnew=pd.merge(dforigin, oiltoadd,on='Year',how='outer')
+        dfnew.to_csv('Data/Data_States/%s.csv'%i, encoding='utf-8', index=False)
+    return
