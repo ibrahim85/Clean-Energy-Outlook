@@ -2,7 +2,7 @@ import os
 from setuptools import setup, find_packages
 PACKAGES = find_packages()
 
-ver_file = os.path.join('Clean-Energy-Outlook', 'version.py')
+ver_file = os.path.join('Clean_Energy_Outlook', 'version.py')
 with open(ver_file) as f:
     exec(f.read())
 
