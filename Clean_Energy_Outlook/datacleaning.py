@@ -5,18 +5,21 @@ import xlrd
 def data_extract(df,state,param_list):
     datalist=[]
     dftemp=df[df['MSN'].isin(["Year"] + param_list) & (df.State==state)]
-    del dftemp['Data_Status']
-    del dftemp['State']
-    del dftemp['MSN']
+    if any(df.columns == 'Data_Status'):
+        del dftemp['Data_Status']
+    if any(df.columns == 'State'):
+        del dftemp['State']
+    if any(df.columns == 'MSN'):
+        del dftemp['MSN']
     dftemp=dftemp.T
     dftemp.columns=param_list
     datalist.append(dftemp)
-    return datalist
+    return datalist[0]
 
 def data_extract_all(df,state_list,param_list):
     for i in state_list:
         data=data_extract(df,i,param_list)
-        data[0].to_csv('Data/Cleaned Data/%s.csv'%i, encoding='utf-8', index=True)
+        data.to_csv('Data/Cleaned Data/%s.csv'%i, encoding='utf-8', index=True)
     return
 
 def add_clprb(state_list):
