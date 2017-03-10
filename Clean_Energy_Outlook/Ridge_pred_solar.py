@@ -6,14 +6,14 @@ from sklearn import linear_model
 from sklearn.model_selection import train_test_split
 
 # define the function to predict solar data in the future
-def pred_nuclear(samplefile, filelist):
+def pred_solar(samplefile, filelist):
   # read data
   data = pd.read_csv(samplefile)
   year1 = data[['Year']][:44]
   #print(year1.shape)
   year2 = data[['Year']][-11:]
 
-  # predict nuclear for future
+  # predict solar energy for future
   year3 = year2 = data[['Year']][-6:]
   year3 = year3.set_index([[0, 1, 2, 3, 4, 5]])
 

@@ -13,7 +13,7 @@ def pred_hydro(samplefile, filelist):
   #print(year1.shape)
   year2 = data[['Year']][-11:]
 
-  # predict nuclear for future
+  # predict hydro energy for future
   year3 = year2 = data[['Year']][-6:]
   year3 = year3.set_index([[0, 1, 2, 3, 4, 5]])
 
