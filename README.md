@@ -1,5 +1,6 @@
 <div align="center">
   <img src="doc/Images/Logo.jpg"><br>
+  <img src="doc/Images/ceilogo.png"><br>
 </div>
 
 ### Due Mar. 15, 2017 at 5PM
