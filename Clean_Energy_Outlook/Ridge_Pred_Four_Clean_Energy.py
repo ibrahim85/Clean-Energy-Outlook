@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 
 # define year and state lists
 
-
+# function for nuclear energy data
 def pred_nuclear(data, statelist):
 """ predict the nuclear data for all 50 states"""
 year1 = data[['Year']][:44]
@@ -43,7 +43,7 @@ future = year3
   # output to csv
   future.to_csv('NuclearPreds.csv', encoding='utf-8', index=False)
 
-
+# function for solar energy data
 def pred_solar(data, statelist):
 """ predict the solar energy data for all states"""
 year1 = data[['Year']][:44]
@@ -80,7 +80,7 @@ future = year3
   # output to csv
   future.to_csv('SolarPreds.csv', encoding='utf-8', index=False)
 
-
+# function for wind energy data
   def pred_wind(data, statelist):
   """ predict the wind energy data for all states"""
   year1 = data[['Year']][:44]
@@ -117,9 +117,9 @@ future = year3
   # output to csv
   future.to_csv('WindPreds.csv', encoding='utf-8', index=False)
 
-
-  def pred_wind(data, statelist):
-  """ predict the wind energy data for all states"""
+# function for hydro energy data
+  def pred_hydro(data, statelist):
+  """ predict the hydro energy data for all states"""
   year1 = data[['Year']][:44]
   year2 = data[['Year']][-11:]
   year3 = data[['Year']][-6:]
@@ -139,7 +139,7 @@ future = year3
     train_x, test_x, train_y, test_y = train_test_split(all_x, all_y, test_size=0.2)
     regr2 = linear_model.Ridge(alpha = 0.75)
     regr2.fit(train_x, train_y)
-    # predict Hydro for future
+    # predict HYTCP for future
     #year3 = data[['Year']][-6:]
     #year3 = year3.set_index([[0, 1, 2, 3, 4, 5]])
     #print(year3)
