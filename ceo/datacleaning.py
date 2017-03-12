@@ -2,12 +2,22 @@ import pandas as pd
 import numpy as np
 import xlrd
 import os
-
+import ceo
+import sys
+import os.path as op
+data_path = op.join(ceo.__path__[0], 'Data')
+data_path = op.join(data_path, 'Original Data')
 US_states = ["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
 
 def data_extract(df,state,param_list):
     """
-
+    Extracts data of the input state with the input parameters
+    Input:
+          df (Pandas DataFrame) - Input DataFrame
+          state (str) - Initials of the state (like CA, WA, TX)
+          param_list (List of str) - Column names to extract
+    Returns:
+            datalist[0] (Pandas DataFrame) - Extracted DataFrame
     """
     assert type(df) == pd.DataFrame and type(state) == str and type(param_list) == list, 'TypeError'
     datalist=[]
@@ -25,24 +35,31 @@ def data_extract(df,state,param_list):
 
 def data_extract_all(df,state_list,param_list):
     """
-
+    Extracts data of all the input states with the input parameters
+    Input:
+          df (Pandas DataFrame) - Input DataFrame
+          state_list (List of str) - List of initials of the state (like CA, WA, TX)
+          param_list (List of str) - Column names to extract
+    Returns:
+            None
     """
-
     assert type(df) == pd.DataFrame and type(state_list) == list and type(param_list) == list and all(isinstance(x, str) for x in state_list) and all(isinstance(x, str) for x in param_list), 'TypeError'
     for i in state_list:
         data=data_extract(df,i,param_list)
-        data.to_csv('Data/Cleaned Data/%s.csv'%i, encoding='utf-8', index=True)
-    names = os.listdir('Data/Cleaned Data/')
-    assert len(names) == len(US_states), 'Data Extract Error'
+        data.to_csv('Data/Cleaned Data/%s.csv'%i, index=True)
     return
 
-def add_clprb(state_list):
+def add_clprb(data,state_list):
     """
-
+    Extracts data from the CLPRB data set and adds it the CSV files of all the input states
+    Input:
+          data (Pandas DataFrame) - Input CLPRB DataFrame
+          state_list (List of str) - List of initials of the state (like CA, WA, TX)
+    Returns:
+            None
     """
-
-    data = xlrd.open_workbook('Data/Original Data/CLPRB.xlsx') # open xlsx file
     for j in state_list:
+
         dftemp = pd.read_csv('Data/Cleaned Data/%s.csv' %j)
         dftemp.rename(columns={'Unnamed: 0':'Year','Unnamed: 5':'GDP'}, inplace = True)
         dftemp['CLPRB']=None
@@ -55,12 +72,16 @@ def add_clprb(state_list):
     assert len(names) == len(US_states), 'Add CLPRB Error'
     return
 
-def add_msn(state_list,parameter):
+def add_msn(data,state_list,parameter):
     """
-
+    Extracts data from the input data set and adds it the CSV files of all the input states
+    Input:
+          data (Pandas DataFrame) - Input DataFrame
+          state_list (List of str) - List of initials of the state (like CA, WA, TX)
+          parameter (List of str) - Column name to extract
+    Returns:
+            None
     """
-
-    data=pd.read_excel("Data/Original Data/%s.xlsx" %parameter)
     for i in state_list:
         tempdf=data[data.StateCode=='%s'%i]
         del tempdf['MSN']
@@ -76,9 +97,14 @@ def add_msn(state_list,parameter):
 
 def climate(data,param,statelist):
     """
-
+    Extracts climate data from the data set and adds it the CSV files of all the input states
+    Input:
+          data (Pandas DataFrame) - Input DataFrame
+          state_list (List of str) - List of initials of the state (like CA, WA, TX)
+          param (str) - Column name
+    Returns:
+            None
     """
-
     statesdic = {
         'AK': 'Alaska',
         'AL': 'Alabama',
@@ -145,7 +171,12 @@ def climate(data,param,statelist):
 
 def oil_price(oil_data,statelist):
     """
-
+    Extracts data from the oil data set and adds it the CSV files of all the input states
+    Input:
+          oil_data (Pandas DataFrame) - Input DataFrame
+          statelist (List of str) - List of initials of the state (like CA, WA, TX)
+    Returns:
+            None
     """
     oiltoadd=oil_data[14:-1]
     for i in statelist:
@@ -158,7 +189,12 @@ def oil_price(oil_data,statelist):
 
 def add_gdp(gdp,statelist):
     """
-
+    Extracts data from the GDP data set and adds it the CSV files of all the input states
+    Input:
+          gdp (Pandas DataFrame) - Input DataFrame
+          statelist (List of str) - List of initials of the state (like CA, WA, TX)
+    Returns:
+            None
     """
     if any('Fips' == gdp.columns):
         del gdp['Fips']
@@ -180,24 +216,32 @@ def add_gdp(gdp,statelist):
     assert len(names) == len(US_states), 'Add GDP Error'
     return
 
-def clean_all_data():
+def clean_all_data(df,gdp,clprb,climate_data,oil,emfdb,enprp,ngmpb,paprb):
     """
-
+    Wrapping function to clean the data and add it the CSV files of all the input states
+    Input:
+          df (Pandas DataFrame) - Input DataFrame
+          gdp (Pandas DataFrame) - Input DataFrame
+          clprb (Pandas DataFrame) - Input DataFrame
+          climate_data (Pandas DataFrame) - Input DataFrame
+          oil (Pandas DataFrame) - Input DataFrame
+          emfdb (Pandas DataFrame) - Input DataFrame
+          enprp (Pandas DataFrame) - Input DataFrame
+          ngmpb (Pandas DataFrame) - Input DataFrame
+          paprb (Pandas DataFrame) - Input DataFrame
+    Returns:
+            None
     """
-    df = pd.read_excel("Data/Original Data/State Energy Data System.xlsx",sheetname=3)
     statelist=["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
     data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"])
-    gdp=pd.read_csv('Data/Original Data/GDP.csv',skiprows=4,index_col=1)
     add_gdp(gdp,statelist)
-    #add_clprb(statelist)
-    add_msn(statelist,'EMFDB')
-    add_msn(statelist,'ENPRP')
-    add_msn(statelist,'NGMPB')
-    add_msn(statelist,'PAPRB')
-    climate_data = pd.read_csv('Data/Original Data/climate_annual.txt',sep = ' ',encoding = 'utf-8')
+    add_clprb(clprb,statelist)
+    add_msn(emfdb,statelist,'EMFDB')
+    add_msn(enprp,statelist,'ENPRP')
+    add_msn(ngmpb,statelist,'NGMPB')
+    add_msn(paprb,statelist,'PAPRB')
     climate(climate_data,'PCP',statelist)
     climate(climate_data,'ZNDX',statelist)
-    oil = pd.read_excel("Data/Original Data/Annual Average Crude Oil Price.xlsx",skiprows=4)
     oil_price(oil,statelist)
     names = os.listdir('Data/Cleaned Data/')
     assert len(names) == len(US_states), 'Add clean_all_data Error'

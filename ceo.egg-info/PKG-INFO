@@ -1,0 +1,37 @@
+Metadata-Version: 1.1
+Name: ceo
+Version: 0.1
+Summary: Prediction of the clean energy market for the next 5 years for all the states in the US
+Home-page: https://github.com/uwkejia/Clean-Energy-Outlook.git
+Author: Rahul Avadhoot
+Author-email: rahulavd@uw.edu
+License: MIT
+Description: 
+        Clean-Energy-Outlook
+        ====================
+        Clean Energy Outlook is a software that reads in energy generation data from
+        1960 to 2014 of various states of the United States as well as other data like
+        GDP, climate, oil price, and other factors and predicts the renewable energy
+        generation of each state for the next 5 years. Software will be useful for
+        investors and policy makers in renewable energy. Investors in clean energy can
+        use this software to identify states where clean energy has high potential.
+        Policy makers can also use this software to develop clean energy policies for
+        different states.
+        To get started, please go to the repository README.
+        .. _README: https://github.com/uwkejia/Clean-Energy-Outlook/blob/master/README.md
+        License
+        =======
+        ``Clean-Energy-Outlook`` is licensed under the terms of the MIT license. See the
+        file "LICENSE" for information on the history of this software, terms &
+        conditions for usage, and a DISCLAIMER OF ALL WARRANTIES.
+        
+Platform: OS Independent
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Scientific/Engineering
+Requires: pandas
+Requires: sklearn

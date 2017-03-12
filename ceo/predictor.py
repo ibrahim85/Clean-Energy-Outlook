@@ -2,6 +2,7 @@
 import pandas as pd
 from sklearn import linear_model
 import numpy as np
+import os
 
 def future_df(data,year_list):
     """
@@ -27,6 +28,7 @@ def gdp_pred(data,k):
     Returns:
             data (Pandas DataFrame) - Contains original and predicted values of GDP
     """
+    ValueError
     from sklearn import linear_model
 
     #Linear regression
@@ -62,8 +64,7 @@ def gdp_pred(data,k):
     elif k == 5:
         regr.fit(data[['Year','k1','k2','k3','k4','k5']][0:55],data[column][0:55])
     else:
-        ValueError('Incorrect value of k')
-
+        raise ValueError('Incorrect value of k')
     #Future prediction of GDP
     for i in range(55,61):
         for j in range(len(k_variables)):
@@ -79,7 +80,7 @@ def gdp_pred(data,k):
         elif k == 5:
             data[column][i] = regr.predict([data['Year'][i],data['k1'][i],data['k2'][i],data['k3'][i],data['k4'][i],data['k5'][i]])
         else:
-            ValueError('Incorrect value of k')
+            raise ValueError('Incorrect value of k')
 
     #Deleting unwanted columns
     for i in k_variables:
@@ -123,7 +124,7 @@ def future_pred(data,column,k=1,a=50,b=61):
     elif k == 5:
         regr.fit(data[['Year','k1','k2','k3','k4','k5']][0:a],data[column][0:a])
     else:
-        ValueError('Incorrect value of k')
+        raise ValueError('Incorrect value of k')
 
     #Future prediction
     for i in range(a,b):
@@ -140,7 +141,7 @@ def future_pred(data,column,k=1,a=50,b=61):
         elif k == 5:
             data[column][i] = regr.predict([data['Year'][i],data['k1'][i],data['k2'][i],data['k3'][i],data['k4'][i],data['k5'][i]])
         else:
-            ValueError('Incorrect value of k')
+            raise ValueError('Incorrect value of k')
 
     #Deleting unwanted columns
     for i in k_variables:
@@ -148,7 +149,7 @@ def future_pred(data,column,k=1,a=50,b=61):
 
     return data
 
-def predict_all(data):
+def predict(data):
     """
     Predict missing values and future values of all predictors
     Input:
@@ -169,7 +170,7 @@ def predict_all(data):
     data=future_pred(data,'Inflation Adjusted Price',k=1,a=56)
     return data
 
-def wrapping_function(name):
+def predict_all():
     """
     Wrapping function
     Input:
@@ -177,7 +178,13 @@ def wrapping_function(name):
     Returns:
             Nan
     """
-    data=pd.read_csv(name)
-    data=predict_all(data)
-    data.to_csv('Predict/'+name)
+    #Removed CSVs of 3 CSV files due to insufficient data
+    os.remove('Data/Cleaned Data/AK.csv')
+    os.remove('Data/Cleaned Data/DC.csv')
+    os.remove('Data/Cleaned Data/HI.csv')
+    statelist = os.listdir('Data/Cleaned Data/')
+    for state in statelist:
+        data=pd.read_csv('Data/Cleaned Data/'+state)
+        data=predict(data)
+        data.to_csv('Data/Cleaned Data/'+state)
     return

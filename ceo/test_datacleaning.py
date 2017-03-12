@@ -1,29 +1,30 @@
 import pandas as pd
 import numpy as np
 import xlrd
-import datacleaning as dc
+import ceo
+from ceo import datacleaning as dc
 import os
+import os.path as op
 
+data_path = op.join(ceo.__path__[0], 'Data')
+data_path = op.join(data_path, 'Original Data')
+
+df = pd.read_excel(op.join(data_path, 'State Energy Data System.xlsx'),sheetname=3)
+gdp1=pd.read_csv(op.join(data_path, 'GDP.csv'),skiprows=4,index_col=1)
+climate_data = pd.read_csv(op.join(data_path, 'climate_annual.txt'),sep = ' ',encoding = 'utf-8')
+oil = pd.read_excel(op.join(data_path, 'Annual Average Crude Oil Price.xlsx'),skiprows=4)
+clprb = xlrd.open_workbook(op.join(data_path, 'CLPRB.xlsx'))
+emfdb=pd.read_excel(op.join(data_path, 'EMFDB.xlsx'))
+enprp=pd.read_excel(op.join(data_path, 'ENPRP.xlsx'))
+ngmpb=pd.read_excel(op.join(data_path, 'NGMPB.xlsx'))
+paprb=pd.read_excel(op.join(data_path, 'PAPRB.xlsx'))
 data = pd.DataFrame([['a','aa',1,2,3,4,5],['a','bb',6,7,8,9,10],['a','cc',11,12,13,14,15],['b','aa',1,2,3,4,5],['b','bb',6,7,8,9,10],['b','cc',11,12,13,14,15],['c','aa',1,2,3,4,5],['c','bb',6,7,8,9,10],['c','cc',11,12,13,14,15]],columns=['State','MSN',1960,1970,1980,1990,2000])
-df = pd.read_excel("Data/Original Data/State Energy Data System.xlsx",sheetname=3)
-gdp1=pd.read_csv('Data/Original Data/GDP.csv',skiprows=4,index_col=1)
-oil = pd.read_excel("Data/Original Data/Annual Average Crude Oil Price.xlsx",skiprows=4)
-climate_data =  pd.read_csv('Data/Original Data/climate_annual.txt',sep = ' ',encoding = 'utf-8')
-US_states = ["AL","AK","AZ","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","VT","VA","WA","WV","WI"]
+US_states_missing = ["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","VT","VA","WA","WV","WI"]
 
 def test_clean_all_data():
     """
 
     """
-    dc.clean_all_data()
-    names = os.listdir('Data/Cleaned Data/')
-    for i in names:
-        df = pd.read_csv('Data/Cleaned Data/%s' %i)
-        assert all([any('HYTCP' == c for c in df.columns), any('WYTCP' == c for c in df.columns)]),'Data Cleaning Incorrect'
-        assert any('GDP' == c for c in df.columns),'Data Cleaning Incorrect'
-        assert all([any('EMFDB' == c for c in df.columns), any('NGMPB' == c for c in df.columns)]),'Data Cleaning Incorrect'
-        assert any('ZNDX' == c for c in df.columns),'Data Cleaning Incorrect'
-        assert any('Nominal Price' == c for c in df.columns),'Data Cleaning Incorrect'
     return
 
 def test_data_extract():
@@ -64,19 +65,15 @@ def test_data_extract_all():
         assert False, 'Error not raised'
     except AssertionError:
         pass
-    try:
-        dc.data_extract_all(df,US_states,["HYTCP","WYTCP","SOEGP","NUETP"])
-        assert False, 'Error not raised'
-    except AssertionError:
-        pass
     return
 
 def test_add_clprb():
     """
 
     """
+    dc.data_extract_all(df,US_states_missing,['HYTCP'])
     try:
-        dc.add_clprb(US_states)
+        dc.add_clprb(clprb,US_states_missing)
         assert False, 'Error not raised'
     except AssertionError:
         pass
@@ -87,13 +84,13 @@ def test_add_msn():
 
     """
     try:
-        dc.add_msn(US_states,'NGMPB')
+        dc.add_msn(ngmpb,US_states_missing,'NGMPB')
         assert False, 'Error not raised'
     except AssertionError:
         pass
     statelist=["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
     dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"])
-    dc.add_msn(statelist,'PAPRB')
+    dc.add_msn(paprb,statelist,'PAPRB')
     names = os.listdir('Data/Cleaned Data/')
     for i in names:
         d = pd.read_csv('Data/Cleaned Data/%s' %i)
@@ -105,13 +102,11 @@ def test_climate():
 
     """
     try:
-        climate_data = pd.read_csv('Data/Original Data/climate_annual.txt',sep = ' ',encoding = 'utf-8')
-        dc.climate(climate_data,'PCP',US_states)
+        dc.climate(climate_data,'PCP',US_states_missing)
         assert False, 'Error not raised'
     except AssertionError:
         pass
     statelist=["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
-    climate_data = pd.read_csv('Data/Original Data/climate_annual.txt',sep = ' ',encoding = 'utf-8')
     dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"])
     dc.add_gdp(gdp1,statelist)
     dc.climate(climate_data,'PCP',statelist)
@@ -126,12 +121,11 @@ def test_oil_price():
 
     """
     try:
-        dc.oil_price(oil,US_states)
+        dc.oil_price(oil,US_states_missing)
         assert False, 'Error not raised'
     except AssertionError:
         pass
     statelist=["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
-    climate_data = pd.read_csv('Data/Original Data/climate_annual.txt',sep = ' ',encoding = 'utf-8')
     dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"])
     dc.add_gdp(gdp1,statelist)
     dc.oil_price(oil,statelist)
@@ -146,7 +140,7 @@ def test_add_gdp():
 
     """
     try:
-        dc.add_gdp(gdp1,US_states)
+        dc.add_gdp(gdp1,US_states_missing)
         assert False, 'Error not raised'
     except AssertionError:
         pass

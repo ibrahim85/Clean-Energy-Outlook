@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 CLASSIFIERS=[
     "Development Status :: 3 - Alpha",
@@ -37,19 +37,12 @@ AUTHOR_EMAIL = "rahulavd@uw.edu"
 DESCRIPTION = ("Prediction of the clean energy market for the next "
                             "5 years for all the states in the US"),
 LICENSE = "MIT",
-#KEYWORDS = "Clean Energy",
 URL = "https://github.com/uwkejia/Clean-Energy-Outlook.git",
 DOWNLOAD_URL = ""
-#PACKAGES=['Clean_Energy_Outlook']
-#PACKAGE_DATA = {'Clean_Energy_Outlook': [pjoin('Data', '*')]}
 PLATFORMS = "OS Independent"
-#MAJOR = _version_major
-#MINOR = _version_minor
-#MICRO = _version_micro
-#VERSION = __version__
 REQUIRES = ["pandas","sklearn"]
 
-setup(name='datacleaning',
+setup(name='ceo',
     maintainer=MAINTAINER,
             maintainer_email=MAINTAINER_EMAIL,
             description=DESCRIPTION,
@@ -62,8 +55,7 @@ setup(name='datacleaning',
             author_email=AUTHOR_EMAIL,
             platforms=PLATFORMS,
             version=0.1,
-#            packages=PACKAGES,
-            #package_data=PACKAGE_DATA,
+            packages=find_packages(),
             install_requires=REQUIRES,
             requires=REQUIRES
 )
