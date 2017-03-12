@@ -1,4 +1,18 @@
-from setuptools import setup
+from __future__ import absolute_import, division, print_function
+from os.path import join as pjoin
+_version_major = 0
+_version_minor = 1
+_version_micro = ''  # use '' for first of series, number for 1 and above
+#_version_extra = 'dev'
+_version_extra = ''  # Uncomment this for full releases
+
+_ver = [_version_major, _version_minor]
+if _version_micro:
+    _ver.append(_version_micro)
+if _version_extra:
+    _ver.append(_version_extra)
+
+__version__ = '.'.join(map(str, _ver))
 
 CLASSIFIERS=[
     "Development Status :: 3 - Alpha",
@@ -29,7 +43,7 @@ License
 file "LICENSE" for information on the history of this software, terms &
 conditions for usage, and a DISCLAIMER OF ALL WARRANTIES.
 """
-MYNAME = 'Clean_Energy_Outlook',
+NAME = "Clean-Energy-Outlook",
 MAINTAINER = "Rahul Avadhoot"
 MAINTAINER_EMAIL = "rahulavd@uw.edu"
 AUTHOR = "Rahul Avadhoot"
@@ -40,30 +54,12 @@ LICENSE = "MIT",
 #KEYWORDS = "Clean Energy",
 URL = "https://github.com/uwkejia/Clean-Energy-Outlook.git",
 DOWNLOAD_URL = ""
-#PACKAGES=['Clean_Energy_Outlook']
-#PACKAGE_DATA = {'Clean_Energy_Outlook': [pjoin('Data', '*')]}
+PACKAGES=['Clean_Energy_Outlook']
+PACKAGE_DATA = {'Clean_Energy_Outlook': [pjoin('Data', '*')]}
 PLATFORMS = "OS Independent"
-#MAJOR = _version_major
-#MINOR = _version_minor
-#MICRO = _version_micro
-#VERSION = __version__
+MAJOR = _version_major
+MINOR = _version_minor
+MICRO = _version_micro
+VERSION = __version__
+#REQUIRES = ["numpy","sklearn","pandas"]
 REQUIRES = ["pandas","sklearn"]
-
-setup(name='datacleaning',
-    maintainer=MAINTAINER,
-            maintainer_email=MAINTAINER_EMAIL,
-            description=DESCRIPTION,
-            long_description=LONG_DESCRIPTION,
-            url=URL,
-            download_url=DOWNLOAD_URL,
-            license=LICENSE,
-            classifiers=CLASSIFIERS,
-            author=AUTHOR,
-            author_email=AUTHOR_EMAIL,
-            platforms=PLATFORMS,
-            version=0.1,
-#            packages=PACKAGES,
-            #package_data=PACKAGE_DATA,
-            install_requires=REQUIRES,
-            requires=REQUIRES
-)
