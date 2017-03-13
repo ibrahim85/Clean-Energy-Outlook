@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="doc/Images/ceilogo.png"><br>
+  <img src="doc/Images/Logo.png"><br>
 </div>
 
 ### Due Mar. 15, 2017 at 5PM
@@ -32,26 +32,35 @@ The libraries used are:
 Visualizations are done using Tableau software.
 
 ### Directory Structure
-Here is a simple tree plot of the current structure:
 ```
 ├── LICENSE
 ├── README.md
-├── Clean-Energy-Outlook
+├── setup.py
+├── .travis.yml
+├── .gitignore
+├── ceo
 │   ├── Data
-│   │   ├── Actual Data
+│   │   ├── Cleaned Data with Missing Predictors
 │   │   ├── Cleaned Data
-│   ├── Machine Learning
-│   │   ├── Ridge Regression
-│   │   ├── LASSO Regression
-│   │   ├── Simple Linear Regression
-│   ├── Documentation
-│   ├── Visualization
-│   ├── Testing
+│   │   ├── Original Data
+│   │   ├── Predicted Data
+│   ├── __init__.py
+│   ├── data_cleaning.py
+│   ├── missing_data.py
+│   ├── ridge_prediction.py
+│   ├── svr_prediction.py
+│   ├── test_data_cleaning.py
+│   ├── test_missing_data.py
+│   ├── version.py
+├── doc
+│   ├── Images
+│   │   ├── Logo.png
+│   │   ├── Flowchart
+│   ├── Data Documentation.md
+│   ├── Design Considerations.md
+├── examples
+│   ├── Demo.ipynb
 ```
-### Flow Map  
-
-<img src = "Clean-Energy-Outlook/doc/flowchart.png">
-
 ### Contributors
 * Hanyang Xu
 * Kejia Wu
