@@ -4,6 +4,7 @@ import xlrd
 import os
 import os.path as op
 import inspect
+pd.options.mode.chained_assignment = None
 
 def data_extract(df,state,param_list):
     """
@@ -26,9 +27,9 @@ def data_extract(df,state,param_list):
         del dftemp['MSN']
     dftemp=dftemp.T
     dftemp.columns=param_list
-    datalist.append(dftemp)
     dftemp.reset_index(inplace=True)
     dftemp.rename(columns={'index':'Year'},inplace=True)
+    datalist.append(dftemp)
     return datalist[0]
 
 def data_extract_all(df,state_list,param_list):
@@ -218,7 +219,6 @@ def add_gdp(gdp,statelist):
         del gdp['Fips']
     gdp=gdp[0:52].T
     del gdp['United States']
-    assert len(statelist) == len(statelist), 'statelist Error'
     for c in range(len(gdp.columns)):
         gdp.rename(columns={gdp.columns[c]:statelist[c]},inplace=True)
     gdp.reset_index(inplace=True)

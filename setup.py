@@ -29,7 +29,7 @@ License
 file "LICENSE" for information on the history of this software, terms &
 conditions for usage, and a DISCLAIMER OF ALL WARRANTIES.
 """
-MYNAME = 'Clean_Energy_Outlook',
+NAME = 'ceo'
 MAINTAINER = "Rahul Avadhoot"
 MAINTAINER_EMAIL = "rahulavd@uw.edu"
 AUTHOR = "Rahul Avadhoot"
@@ -38,11 +38,11 @@ DESCRIPTION = ("Prediction of the clean energy market for the next "
                             "5 years for all the states in the US"),
 LICENSE = "MIT",
 URL = "https://github.com/uwkejia/Clean-Energy-Outlook.git",
-DOWNLOAD_URL = ""
+DOWNLOAD_URL = "https://github.com/uwkejia/Clean-Energy-Outlook.git"
 PLATFORMS = "OS Independent"
-REQUIRES = ["pandas","sklearn"]
+REQUIRES = ["numpy","pandas","sklearn"]
 
-setup(name='ceo',
+setup(name=NAME,
     maintainer=MAINTAINER,
             maintainer_email=MAINTAINER_EMAIL,
             description=DESCRIPTION,
@@ -54,7 +54,7 @@ setup(name='ceo',
             author=AUTHOR,
             author_email=AUTHOR_EMAIL,
             platforms=PLATFORMS,
-            version=0.1,
+            version=1.0,
             packages=find_packages(),
             install_requires=REQUIRES,
             requires=REQUIRES

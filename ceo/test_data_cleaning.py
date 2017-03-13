@@ -31,7 +31,8 @@ def test_data_extract():
     """
 
     """
-    result1 = pd.DataFrame([[1,6],[2,7],[3,8],[4,9],[5,10]],[1960,1970,1980,1990,2000],['aa','bb'])
+    data = pd.DataFrame([['a','aa',1,2,3,4,5],['a','bb',6,7,8,9,10],['a','cc',11,12,13,14,15],['b','aa',1,2,3,4,5],['b','bb',6,7,8,9,10],['b','cc',11,12,13,14,15],['c','aa',1,2,3,4,5],['c','bb',6,7,8,9,10],['c','cc',11,12,13,14,15]],columns=['State','MSN',1960,1970,1980,1990,2000])
+    result1 = pd.DataFrame([[1960,1,6],[1970,2,7],[1980,3,8],[1990,4,9],[2000,5,10]],columns=['Year','aa','bb'])
     df1 = dc.data_extract(data,'a',['aa','bb'])
     assert all(df1 == result1), 'Data extraction incorrect!'
     try:
@@ -65,6 +66,7 @@ def test_data_extract_all():
         assert False, 'Error not raised'
     except AssertionError:
         pass
+    os.remove('Data/Cleaned Data with Missing Predictors/a.csv')
     return
 
 def test_add_clprb():
