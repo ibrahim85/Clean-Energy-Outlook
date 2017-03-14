@@ -72,7 +72,9 @@ def test_data_extract_all():
         assert False, 'Error not raised'
     except TypeError:
         pass
-    os.remove(path_test+'\\a.csv')
+    names = os.listdir(path_test)
+    for i in names:
+        os.remove(path_test+'\\%s'%i)
     return
 
 def test_add_clprb():
@@ -105,13 +107,6 @@ def test_add_msn():
     if not os.path.exists(path_test):
         os.makedirs(path_test)
     statelist=["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
-    try:
-        dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"],path_test)
-        dc.add_msn(ngmpb,US_states_missing,'NGMPB',path_test)
-        assert False, 'Error not raised'
-    except ValueError:
-        pass
-    statelist=["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
     dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"],path_test)
     dc.add_msn(paprb,statelist,'PAPRB',path_test)
     names = os.listdir(path_test)
@@ -132,13 +127,6 @@ def test_climate():
     path_test = op.join(path, 'Test Data')
     if not os.path.exists(path_test):
         os.makedirs(path_test)
-    statelist=["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
-    try:
-        dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"],path_test)
-        dc.climate(climate_data,'PCP',US_states_missing,path_test)
-        raise ValueError
-    except AssertionError:
-        pass
     statelist=["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
     dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"],path_test)
     dc.add_gdp(gdp1,statelist,path_test)
@@ -162,12 +150,6 @@ def test_oil_price():
     if not os.path.exists(path_test):
         os.makedirs(path_test)
     statelist=["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
-    try:
-        dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"],path_test)
-        dc.oil_price(oil,US_states_missing,path_test)
-        raise ValueError
-    except AssertionError:
-        pass
     dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"],path_test)
     dc.add_gdp(gdp1,statelist,path_test)
     dc.oil_price(oil,statelist,path_test)
@@ -189,12 +171,6 @@ def test_add_gdp():
     path_test = op.join(path, 'Test Data')
     if not os.path.exists(path_test):
         os.makedirs(path_test)
-    try:
-        dc.data_extract_all(df,US_states_missing,["HYTCP","WYTCP","SOEGP","NUETP"],path_test)
-        dc.add_gdp(gdp1,US_states_missing,path_test)
-        raise ValueError
-    except AssertionError:
-        pass
     statelist=["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
     dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"],path_test)
     dc.add_gdp(gdp1,statelist,path_test)

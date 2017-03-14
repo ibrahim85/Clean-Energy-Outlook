@@ -97,11 +97,6 @@ def add_msn(data,state_list,parameter,path_miss):
         df_r=pd.merge(df, tempdf,on='Year',how='outer')
         df_r.rename(columns={'Data':parameter}, inplace = True)
         df_r.to_csv(path_miss+'\\%s.csv' %i, encoding='utf-8', index=False)
-    names = os.listdir(path_miss)
-    if len(names) == len(state_list):
-        pass
-    else:
-        raise ValueError
     return
 
 def climate(data,param,statelist,path_miss):
@@ -173,8 +168,6 @@ def climate(data,param,statelist,path_miss):
         dftoadd=dfstate[['Year',param]]
         dfnew=pd.merge(dforigin, dftoadd,on='Year',how='outer')
         dfnew.to_csv(path_miss+'\\%s.csv'%i, encoding='utf-8', index=False)
-    names = os.listdir(path_miss)
-    assert len(names) == len(statelist), 'Add Climate Error'
     return
 
 def oil_price(oil_data,statelist,path_miss):
@@ -191,8 +184,6 @@ def oil_price(oil_data,statelist,path_miss):
         dforigin = pd.read_csv(path_miss+'\\%s.csv' %i)
         dfnew=pd.merge(dforigin, oiltoadd,on='Year',how='outer')
         dfnew.to_csv(path_miss+'\\%s.csv'%i, encoding='utf-8', index=False)
-    names = os.listdir(path_miss)
-    assert len(names) == len(statelist), 'Add oil_price Error'
     return
 
 def add_gdp(gdp,statelist,path_miss):
@@ -219,9 +210,6 @@ def add_gdp(gdp,statelist,path_miss):
         df_r=pd.merge(df, gdp[['Year',i]],on='Year',how='outer')
         df_r.rename(columns={i:'GDP'},inplace=True)
         df_r.to_csv(path_miss+'\\%s.csv'%i, encoding='utf-8', index=False)
-    names = os.listdir(path_miss)
-    state_list=["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
-    assert len(names) == len(state_list), 'Add GDP Error'
     return
 
 def clean_all_data():
