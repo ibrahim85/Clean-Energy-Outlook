@@ -1,4 +1,4 @@
-notifications: 
+notifications:
   email:
     recipients:
       - rahulavd@uw.edu
@@ -9,11 +9,11 @@ language: python
 
 python:
   - "3.5"
-  
+
 branches:
   only:
     - master
-    
+
 sudo: false
 
 install:
@@ -23,8 +23,8 @@ install:
   - pip install nose-exclude
   - python setup.py install
 
-script: 
+script:
   - nosetests --with-doctest --with-coverage --cover-package=ceo --exclude-dir=test/external --exclude-dir=extern --where=ceo
-  
+
 after_success:
     - coveralls
