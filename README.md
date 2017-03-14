@@ -5,6 +5,9 @@
 [![Build Status](https://travis-ci.org/rahulavadhoot/Clean-Energy-Outlook.svg?branch=master)](https://travis-ci.org/rahulavadhoot/Clean-Energy-Outlook)
 [![Coverage Status](https://coveralls.io/repos/rahulavadhoot/Clean-Energy-Outlook/badge.svg?branch=master)](https://coveralls.io/r/rahulavadhoot/Clean-Energy-Outlook?branch=master)
 [![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)]()
+[![Build Status](https://travis-ci.org/uwkejia/Clean-Energy-Outlook.svg?branch=master)](https://travis-ci.org/uwkejia/Clean-Energy-Outlook)
+[![Coverage Status](https://coveralls.io/repos/uwkejia/Clean-Energy-Outlook/badge.svg?branch=master)](https://coveralls.io/r/uwkejia/Clean-Energy-Outlook?branch=master)
+
 
 ### Due Mar. 15, 2017 at 5PM
 ---
