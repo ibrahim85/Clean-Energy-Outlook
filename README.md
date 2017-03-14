@@ -6,6 +6,8 @@
 
 [![Coverage Status](https://coveralls.io/repos/rahulavadhoot/Clean-Energy-Outlook/badge.svg?branch=master)](https://coveralls.io/r/rahulavadhoot/Clean-Energy-Outlook?branch=master)
 
+[![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)]()
+
 ### Due Mar. 15, 2017 at 5PM
 ---
 ### Project Description
@@ -32,8 +34,7 @@ The libraries used are:
 * scikit-learn  
 * pandas  
 * numpy
-* matplotlib
-* statsmodels
+* scipy
 
 Visualizations are done using Tableau software.
 
@@ -44,7 +45,9 @@ Visualizations are done using Tableau software.
 ├── README.md
 ├── setup.py
 ├── .travis.yml
+├── .coveragerc
 ├── .gitignore
+├── requirements.txt
 ├── ceo
 │   ├── Data
 │   │   ├── Cleaned Data with Missing Predictors
@@ -58,7 +61,6 @@ Visualizations are done using Tableau software.
 │   ├── svr_prediction.py
 │   ├── test_data_cleaning.py
 │   ├── test_missing_data.py
-│   ├── version.py
 ├── doc
 │   ├── Images
 │   │   ├── Logo.png
