@@ -6,6 +6,8 @@ from sklearn.model_selection import train_test_split
 import os
 import os.path as op
 import inspect
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning)
 
 # function for nuclear energy data
 def pred_nuclear(data):

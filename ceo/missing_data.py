@@ -5,6 +5,8 @@ import numpy as np
 import os
 import os.path as op
 import inspect
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 def future_df(data,year_list):
     """

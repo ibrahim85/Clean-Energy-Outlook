@@ -5,6 +5,7 @@ import ceo
 from ceo import data_cleaning as dc
 import os
 import os.path as op
+import inspect
 
 data_path = op.join(ceo.__path__[0], 'Data')
 data_path = op.join(data_path, 'Original Data')
@@ -38,17 +39,17 @@ def test_data_extract():
     try:
         dc.data_extract([[1,2,3]],1,['aa','bb'])
         assert False, 'Error not raised'
-    except AssertionError:
+    except TypeError:
         pass
     try:
         dc.data_extract(data,1,['aa','bb'])
         assert False, 'Error not raised'
-    except AssertionError:
+    except TypeError:
         pass
     try:
         dc.data_extract(data,'state','aa')
         assert False, 'Error not raised'
-    except AssertionError:
+    except TypeError:
         pass
     return
 
@@ -56,101 +57,152 @@ def test_data_extract_all():
     """
 
     """
+    path= os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+    path = op.join(path, 'Data')
+    path_test = op.join(path, 'Test Data')
+    if not os.path.exists(path_test):
+        os.makedirs(path_test)
     try:
-        dc.data_extract_all(data,['a',2],['aa','bb'])
+        dc.data_extract_all(data,['a',2],['aa','bb'],path_test)
         assert False, 'Error not raised'
-    except AssertionError:
+    except TypeError:
         pass
     try:
-        dc.data_extract_all(data,['a','b'],[['a'],'bb'])
+        dc.data_extract_all(data,['a','b'],[['a'],'bb'],path_test)
         assert False, 'Error not raised'
-    except AssertionError:
+    except TypeError:
         pass
-    os.remove('Data/Cleaned Data with Missing Predictors/a.csv')
+    os.remove(path_test+'\\a.csv')
     return
 
 def test_add_clprb():
     """
 
     """
-    dc.data_extract_all(df,US_states_missing,['HYTCP'])
+    path= os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+    path = op.join(path, 'Data')
+    path_test = op.join(path, 'Test Data')
+    if not os.path.exists(path_test):
+        os.makedirs(path_test)
+    dc.data_extract_all(df,US_states_missing,['HYTCP'],path_test)
     try:
-        dc.add_clprb(clprb,US_states_missing)
+        dc.add_clprb(clprb,US_states_missing,path_test)
         assert False, 'Error not raised'
     except AssertionError:
         pass
+    names = os.listdir(path_test)
+    for i in names:
+        os.remove(path_test+'\\%s'%i)
     return
 
 def test_add_msn():
     """
 
     """
+    path= os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+    path = op.join(path, 'Data')
+    path_test = op.join(path, 'Test Data')
+    if not os.path.exists(path_test):
+        os.makedirs(path_test)
+    statelist=["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
     try:
-        dc.add_msn(ngmpb,US_states_missing,'NGMPB')
+        dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"],path_test)
+        dc.add_msn(ngmpb,US_states_missing,'NGMPB',path_test)
         assert False, 'Error not raised'
     except ValueError:
         pass
     statelist=["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
-    dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"])
-    dc.add_msn(paprb,statelist,'PAPRB')
-    names = os.listdir('Data/Cleaned Data with Missing Predictors')
+    dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"],path_test)
+    dc.add_msn(paprb,statelist,'PAPRB',path_test)
+    names = os.listdir(path_test)
     for i in names:
-        d = pd.read_csv('Data/Cleaned Data with Missing Predictors/%s' %i)
+        d = pd.read_csv(path_test+'\\%s' %i)
         assert any('PAPRB' == c for c in d.columns),'Data Cleaning Incorrect'
+    names = os.listdir(path_test)
+    for i in names:
+        os.remove(path_test+'\\%s'%i)
     return
 
 def test_climate():
     """
 
     """
+    path= os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+    path = op.join(path, 'Data')
+    path_test = op.join(path, 'Test Data')
+    if not os.path.exists(path_test):
+        os.makedirs(path_test)
+    statelist=["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
     try:
-        dc.climate(climate_data,'PCP',US_states_missing)
-        assert False, 'Error not raised'
+        dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"],path_test)
+        dc.climate(climate_data,'PCP',US_states_missing,path_test)
+        raise ValueError
     except AssertionError:
         pass
     statelist=["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
-    dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"])
-    dc.add_gdp(gdp1,statelist)
-    dc.climate(climate_data,'PCP',statelist)
-    names = os.listdir('Data/Cleaned Data/')
+    dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"],path_test)
+    dc.add_gdp(gdp1,statelist,path_test)
+    dc.climate(climate_data,'PCP',statelist,path_test)
+    names = os.listdir(path_test)
     for i in names:
-        d = pd.read_csv('Data/Cleaned Data/%s' %i)
+        d = pd.read_csv(path_test+'\\%s' %i)
         assert any('PCP' == c for c in d.columns),'Data Cleaning Incorrect'
+    names = os.listdir(path_test)
+    for i in names:
+        os.remove(path_test+'\\%s'%i)
     return
 
 def test_oil_price():
     """
 
     """
+    path= os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+    path = op.join(path, 'Data')
+    path_test = op.join(path, 'Test Data')
+    if not os.path.exists(path_test):
+        os.makedirs(path_test)
+    statelist=["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
     try:
-        dc.oil_price(oil,US_states_missing)
-        assert False, 'Error not raised'
+        dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"],path_test)
+        dc.oil_price(oil,US_states_missing,path_test)
+        raise ValueError
     except AssertionError:
         pass
-    statelist=["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
-    dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"])
-    dc.add_gdp(gdp1,statelist)
-    dc.oil_price(oil,statelist)
-    names = os.listdir('Data/Cleaned Data/')
+    dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"],path_test)
+    dc.add_gdp(gdp1,statelist,path_test)
+    dc.oil_price(oil,statelist,path_test)
+    names = os.listdir(path_test)
     for i in names:
-        d = pd.read_csv('Data/Cleaned Data/%s' %i)
+        d = pd.read_csv(path_test+'\\%s' %i)
         assert any('Inflation Adjusted Price' == c for c in d.columns),'Data Cleaning Incorrect'
+    names = os.listdir(path_test)
+    for i in names:
+        os.remove(path_test+'\\%s'%i)
     return
 
 def test_add_gdp():
     """
 
     """
+    path= os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+    path = op.join(path, 'Data')
+    path_test = op.join(path, 'Test Data')
+    if not os.path.exists(path_test):
+        os.makedirs(path_test)
     try:
-        dc.add_gdp(gdp1,US_states_missing)
-        assert False, 'Error not raised'
+        dc.data_extract_all(df,US_states_missing,["HYTCP","WYTCP","SOEGP","NUETP"],path_test)
+        dc.add_gdp(gdp1,US_states_missing,path_test)
+        raise ValueError
     except AssertionError:
         pass
     statelist=["AL","AK","AZ","AR","CA","CO","CT","DE","DC","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
-    dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"])
-    dc.add_gdp(gdp1,statelist)
-    names = os.listdir('Data/Cleaned Data/')
+    dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"],path_test)
+    dc.add_gdp(gdp1,statelist,path_test)
+    names = os.listdir(path_test)
     for i in names:
-        d = pd.read_csv('Data/Cleaned Data/%s' %i)
+        d = pd.read_csv(path_test+'\\%s' %i)
         assert any('GDP' == c for c in d.columns),'Data Cleaning Incorrect'
+    names = os.listdir(path_test)
+    for i in names:
+        os.remove(path_test+'\\%s'%i)
     return

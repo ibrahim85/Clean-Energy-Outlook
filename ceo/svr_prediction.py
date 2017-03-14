@@ -6,7 +6,8 @@ import pandas as pd
 import os
 import os.path as op
 import inspect
-
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 def read_data(file_name):
     """
