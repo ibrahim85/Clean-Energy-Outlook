@@ -134,14 +134,41 @@ def future_pred(data,column,k=1,a=50,b=61):
             data[k_variables[j]][i]=data[column][i-j-1]
         if k == 1:
             data[column][i] = regr.predict([data['Year'][i],data['k1'][i]])
+            if data[column][i] < 0:
+                if column == 'ZNDX':
+                    pass
+                else:
+                    data[column][i] = 0
         elif k == 2:
             data[column][i] = regr.predict([data['Year'][i],data['k1'][i],data['k2'][i]])
+            if data[column][i] < 0:
+                if column == 'ZNDX':
+                    pass
+                else:
+                    data[column][i] = 0
         elif k == 3:
             data[column][i] = regr.predict([data['Year'][i],data['k1'][i],data['k2'][i],data['k3'][i]])
+            if data[column][i] < 0:
+                if column == 'ZNDX':
+                    pass
+                else:
+                    data[column][i] = 0
+
         elif k == 4:
             data[column][i] = regr.predict([data['Year'][i],data['k1'][i],data['k2'][i],data['k3'][i],data['k4'][i]])
+            if data[column][i] < 0:
+                if column == 'ZNDX':
+                    pass
+                else:
+                    data[column][i] = 0
+
         elif k == 5:
             data[column][i] = regr.predict([data['Year'][i],data['k1'][i],data['k2'][i],data['k3'][i],data['k4'][i],data['k5'][i]])
+            if data[column][i] < 0:
+                if column == 'ZNDX':
+                    pass
+                else:
+                    data[column][i] = 0
         else:
             raise ValueError('Incorrect value of k')
 

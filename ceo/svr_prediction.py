@@ -82,6 +82,9 @@ def SVR_predict(data, X_train, X_test, y_train, y_test, param):
     clf = SVR(kernel=kernel_name, C=c_value, epsilon=0.3).fit(X_train, y_train)
     future_x = data[['GDP_scaled','CLPRB_scaled','EMFDB_scaled','ENPRP_scaled','NGMPB_scaled','PAPRB_scaled','PCP_scaled','ZNDX_scaled','OP_scaled','OP2_scaled']][-6:]
     pred = pd.DataFrame(clf.predict(future_x))
+    for i in range(6):
+        if pred[0][i] < 0:
+            pred[0][i] = 0
     data[param][-6:] = pred[0]
     return data
 
@@ -112,5 +115,6 @@ def SVR_predict_all():
         data = SVR_predict(data,X_train, X_test, y_train, y_test,'HYTCP')
         X_train, X_test, y_train, y_test = split_data(data,'WYTCP')
         data = SVR_predict(data,X_train, X_test, y_train, y_test,'WYTCP')
+        data.drop(['GDP_scaled','CLPRB_scaled','EMFDB_scaled','ENPRP_scaled','NGMPB_scaled','PAPRB_scaled','PCP_scaled','ZNDX_scaled','OP_scaled','OP2_scaled'],inplace=True,axis=1)
         data.to_csv(path_predict+'\\%s'%state, encoding='utf-8', index=False)
     return
