@@ -35,7 +35,7 @@ The libraries used are:
 * scipy
 
 Visualizations are done using Tableau software.
-
+1 paragraph about Tableau goes here
 ---
 ### Directory Structure
 ```
