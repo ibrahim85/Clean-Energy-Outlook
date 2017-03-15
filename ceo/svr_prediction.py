@@ -17,9 +17,13 @@ def read_data(file_name):
     Returns:
            Pandas DataFrame
     """
+
     path= os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
     path = op.join(path, 'Data')
     path_clean = op.join(path, 'Cleaned Data')
+    names = os.listdir(path_clean)
+    if all(file_name != i for i in names):
+        raise ValueError
     return pd.read_csv(path_clean+'\\%s'%file_name)
 
 def preprocess(data):
