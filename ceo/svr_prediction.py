@@ -21,7 +21,7 @@ def read_data(file_name):
     path= os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
     path = op.join(path, 'Data')
     path_clean = op.join(path, 'Cleaned Data')
-    path = op.join(path_clean, 'file_name')
+    path = op.join(path_clean, file_name)
     names = os.listdir(path_clean)
     if all(file_name != i for i in names):
         raise ValueError
