@@ -36,6 +36,20 @@ def test_future_pred():
         pass
     return
 
+def test_predict():
+    path= os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+    path = op.join(path, 'Data')
+    path_clean = op.join(path, 'Cleaned Data with Missing Predictors')
+    path = op.join(path_clean,'CA.csv')
+    data=pd.read_csv(path)
+    pred = md.predict(data)
+    assert all(pred['ENPRP'][-6:] != None), 'predict incorrect'
+    assert all(pred['PAPRB'][-6:] >= 0), 'predict incorrect'
+    assert all(pred['PCP'][-6:] != None), 'predict incorrect'
+    assert all(pred['Inflation Adjusted Price'][-6:] >= 0), 'predict incorrect'
+
+    return
+
 def test_predict_all():
     md.predict_all()
     path= os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))

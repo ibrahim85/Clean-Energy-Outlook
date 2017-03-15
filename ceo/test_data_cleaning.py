@@ -182,3 +182,18 @@ def test_add_gdp():
     for i in names:
         os.remove(path_test+'\\%s'%i)
     return
+
+def test_clean_all_data():
+    dc.clean_all_data()
+    path= os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+    path = op.join(path, 'Data')
+    path_clean = op.join(path, 'Cleaned Data with Missing Predictors')
+    states = os.listdir(path_clean)
+    for i in states:
+        path_csv = op.join(path_clean,i)
+        pred = pd.read_csv(path_csv)
+        assert any('EMFDB' == pred.columns), 'predict_all incorrect'
+        assert any('HYTCP' == pred.columns), 'predict_all incorrect'
+        assert any('NGMPB' == pred.columns), 'predict_all incorrect'
+        assert any('PCP' == pred.columns), 'predict_all incorrect'
+    return
