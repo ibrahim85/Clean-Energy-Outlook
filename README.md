@@ -27,21 +27,23 @@ All data sources are open source and can easily be downloaded.
 * Climate: NOAA Satellite and Information Service (https://www7.ncdc.noaa.gov/CDO/CDODivisionalSelect.jsp)
 ---
 ### Software Dependencies
-All data cleaning and machine learning algorithms are written in Python 3.5 using open source libraries.  
-The libraries used are:
-* scikit-learn  
-* pandas  
-* numpy
-* scipy
+* All data cleaning and machine learning algorithms are written in Python 3.5 using open source libraries. The libraries used are:
+    * scikit-learn  
+    * pandas  
+    * numpy
+    * scipy
 
-Visualizations are done using Tableau software.
+* All visualizations are done in Tableau.
 
+### Visualizations
 The Tableau workbook is located in the examples directory.  
 
 <div align="center">
   <img src="doc/Images/Tableau_Screenshot.png"><br>
 </div>
 
+The interactive version can be viewed at:
+https://public.tableau.com/profile/rahul1168#!/vizhome/TableauWorkbookforSVRPrediction/CleanEnergyProductioninthecontiguousUnitedStates
 ---
 ### Directory Structure
 ```
@@ -58,6 +60,7 @@ The Tableau workbook is located in the examples directory.
 │   │   ├── Cleaned Data
 │   │   ├── Original Data
 │   │   ├── Predicted Data
+│   │   ├── Test Data
 │   ├── __init__.py
 │   ├── data_cleaning.py
 │   ├── missing_data.py
@@ -65,14 +68,18 @@ The Tableau workbook is located in the examples directory.
 │   ├── svr_prediction.py
 │   ├── test_data_cleaning.py
 │   ├── test_missing_data.py
+│   ├── test_ridge_prediction.py
+│   ├── test_svr_prediction.py
 ├── doc
 │   ├── Images
 │   │   ├── Logo.png
-│   │   ├── Flowchart
+│   │   ├── Flowchart.png
+│   │   ├── Tableau Screenshot.png
 │   ├── Data Documentation.md
 │   ├── Design Considerations.md
 ├── examples
 │   ├── Demo.ipynb
+│   ├── Tableau Workbook for SVR Prediction.twb
 ```
 ---
 ### Contributors
