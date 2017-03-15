@@ -4,6 +4,7 @@ import os
 import os.path as op
 import pandas as pd
 import numpy as np
+import inspect
 
 data_path = op.join(ceo.__path__[0], 'Data')
 data_path = op.join(data_path, 'Cleaned Data')
@@ -33,4 +34,19 @@ def test_future_pred():
         assert False, ('k not handled')
     except ValueError:
         pass
+    return
+
+def test_predict_all():
+    md.predict_all()
+    path= os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+    path = op.join(path, 'Data')
+    path_clean = op.join(path, 'Cleaned Data')
+    statelist = os.listdir(path_clean)
+    for state in statelist:
+        path = op.join(path_clean,state)
+        pred=pd.read_csv(path)
+        assert all(pred['EMFDB'][-6:] != None), 'predict_all incorrect'
+        assert all(pred['CLPRB'][-6:] >= 0), 'predict_all incorrect'
+        assert all(pred['NGMPB'][-6:] != None), 'predict_all incorrect'
+        assert all(pred['Nominal Price'][-6:] >= 0), 'predict_all incorrect'
     return

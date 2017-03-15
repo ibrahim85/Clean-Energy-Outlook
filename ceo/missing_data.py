@@ -220,7 +220,9 @@ def predict_all():
     statelist.remove('HI.csv')
     statelist.remove('DC.csv')
     for state in statelist:
-        data=pd.read_csv(path_missing+'\\'+state)
+        path = op.join(path_missing,state)
+        data=pd.read_csv(path)
         data=predict(data)
-        data.to_csv(path_clean+'\\'+state)
+        path = op.join(path_clean,state)
+        data.to_csv(path)
     return
