@@ -213,8 +213,8 @@ def test_add_gdp():
     dc.data_extract_all(df,statelist,["HYTCP","WYTCP","SOEGP","NUETP"],path_test)
     dc.add_gdp(gdp1,statelist,path_test)
     names = os.listdir(path_test)
-    d = pd.read_csv(path_test+'\\%s' %i)
     for i in names:
+        d = pd.read_csv(path_test+'\\%s' %i)
         #Checking column 'GDP' present in CSV
         assert any('GDP' == c for c in d.columns),'Data Cleaning Incorrect'
     names = os.listdir(path_test)

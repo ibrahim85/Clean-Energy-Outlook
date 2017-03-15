@@ -41,14 +41,14 @@ def test_pred_solar():
     return
 
 def test_pred_wind():
-        """
-        Function to test pred_wind
-        Input:
-              None
-        Returns:
-                None
-        """
-    data = pd.read_csv(op.join(data_path, 'NY.csv'))
+    """
+    Function to test pred_wind
+    Input:
+          None
+    Returns:
+            None
+    """
+    data = pd.read_csv(op.join(data_path,'NY.csv'))
     pred = rp.pred_wind(data)
     assert all(pred['WYTCP'][-6:] != None), 'pred_wind incorrect'
     data = pd.read_csv(op.join(data_path, 'TX.csv'))
