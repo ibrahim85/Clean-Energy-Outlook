@@ -35,7 +35,13 @@ The libraries used are:
 * scipy
 
 Visualizations are done using Tableau software.
-1 paragraph about Tableau goes here
+
+The Tableau workbook is located in the examples directory.  
+
+<div align="center">
+  <img src="doc/Images/Tableau_Screenshot.png"><br>
+</div>
+
 ---
 ### Directory Structure
 ```
