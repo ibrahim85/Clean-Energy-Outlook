@@ -154,7 +154,8 @@ def ridge_predict_all():
     if not os.path.exists(path_predict):
         os.makedirs(path_predict)
     for i in statelist:
-        data = pd.read_csv(path_clean+'\\%s' %i)
+        path = op.join(path_predict, i)
+        data = pd.read_csv(path)
         data = pred_nuclear(data)
         data = pred_hydro(data)
         data = pred_wind(data)
