@@ -9,6 +9,13 @@ data_path = op.join(ceo.__path__[0], 'Data')
 data_path = op.join(data_path, 'Cleaned Data')
 
 def test_pred_nuclear():
+    """
+    Function to test pred_nuclear
+    Input:
+          None
+    Returns:
+            None
+    """
     data = pd.read_csv(op.join(data_path, 'CA.csv'))
     pred = rp.pred_nuclear(data)
     assert all(pred['NUETP'][-6:] != None), 'pred_nuclear incorrect'
@@ -18,6 +25,13 @@ def test_pred_nuclear():
     return
 
 def test_pred_solar():
+    """
+    Function to test pred_solar
+    Input:
+          None
+    Returns:
+            None
+    """
     data = pd.read_csv(op.join(data_path, 'CA.csv'))
     pred = rp.pred_solar(data)
     assert all(pred['SOEGP'][-6:] != None), 'pred_solar incorrect'
@@ -27,6 +41,13 @@ def test_pred_solar():
     return
 
 def test_pred_wind():
+        """
+        Function to test pred_wind
+        Input:
+              None
+        Returns:
+                None
+        """
     data = pd.read_csv(op.join(data_path, 'NY.csv'))
     pred = rp.pred_wind(data)
     assert all(pred['WYTCP'][-6:] != None), 'pred_wind incorrect'
@@ -36,6 +57,13 @@ def test_pred_wind():
     return
 
 def test_pred_hydro():
+    """
+    Function to test pred_hydro
+    Input:
+          None
+    Returns:
+            None
+    """
     data = pd.read_csv(op.join(data_path, 'OR.csv'))
     pred = rp.pred_hydro(data)
     assert all(pred['HYTCP'][-6:] != None), 'pred_hydro incorrect'
@@ -45,6 +73,13 @@ def test_pred_hydro():
     return
 
 def test_ridge_predict_all():
+    """
+    Function to test predict_all
+    Input:
+          None
+    Returns:
+            None
+    """
     rp.ridge_predict_all()
     path= os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
     path = op.join(path, 'Data')

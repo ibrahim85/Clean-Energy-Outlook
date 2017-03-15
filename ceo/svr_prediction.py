@@ -88,6 +88,7 @@ def SVR_predict(data, X_train, X_test, y_train, y_test, param):
     clf = SVR(kernel=kernel_name, C=c_value, epsilon=0.3).fit(X_train, y_train)
     future_x = data[['GDP_scaled','CLPRB_scaled','EMFDB_scaled','ENPRP_scaled','NGMPB_scaled','PAPRB_scaled','PCP_scaled','ZNDX_scaled','OP_scaled','OP2_scaled']][-6:]
     pred = pd.DataFrame(clf.predict(future_x))
+    #Replacing negative values with 0
     for i in range(6):
         if pred[0][i] < 0:
             pred[0][i] = 0
@@ -102,6 +103,7 @@ def SVR_predict_all():
     Returns:
             None
     """
+    #Path of CLeaned and Predicted Data
     path= os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
     path = op.join(path, 'Data')
     path_clean = op.join(path, 'Cleaned Data')
@@ -113,14 +115,19 @@ def SVR_predict_all():
     for state in statelist:
         data = read_data(state)
         data = preprocess(data)
+        #NUETP Prediction
         X_train, X_test, y_train, y_test = split_data(data,'NUETP')
         data = SVR_predict(data,X_train, X_test, y_train, y_test,'NUETP')
+        #SOEGP Prediction
         X_train, X_test, y_train, y_test = split_data(data,'SOEGP')
         data = SVR_predict(data,X_train, X_test, y_train, y_test,'SOEGP')
+        #HYTCP Prediction
         X_train, X_test, y_train, y_test = split_data(data,'HYTCP')
         data = SVR_predict(data,X_train, X_test, y_train, y_test,'HYTCP')
+        #WYTCP Prediction
         X_train, X_test, y_train, y_test = split_data(data,'WYTCP')
         data = SVR_predict(data,X_train, X_test, y_train, y_test,'WYTCP')
+        #Drop scaled columns
         data.drop(['GDP_scaled','CLPRB_scaled','EMFDB_scaled','ENPRP_scaled','NGMPB_scaled','PAPRB_scaled','PCP_scaled','ZNDX_scaled','OP_scaled','OP2_scaled'],inplace=True,axis=1)
         data.to_csv(path_predict+'\\%s'%state, encoding='utf-8', index=False)
     return

@@ -33,6 +33,7 @@ def pred_nuclear(data):
         data['k1'][i]=data['NUETP'][i-1]
         future_x = data[['k1','GDP','CLPRB','EMFDB','ENPRP','NGMPB','PAPRB','PCP','ZNDX','Nominal Price', 'Inflation Adjusted Price']][i:i+1]
         pred = regr2.predict(future_x)
+        #Replacing negative values with 0
         if pred < 0:
             pred = 0
         data['NUETP'][i] = pred
@@ -65,6 +66,7 @@ def pred_solar(data):
         data['k1'][i]=data['SOEGP'][i-1]
         future_x = data[['k1','GDP','CLPRB','EMFDB','ENPRP','NGMPB','PAPRB','PCP','ZNDX','Nominal Price', 'Inflation Adjusted Price']][i:i+1]
         pred = regr2.predict(future_x)
+        #Replacing negative values with 0
         if pred < 0:
             pred = 0
         data['SOEGP'][i] = pred
@@ -81,15 +83,9 @@ def pred_wind(data):
             data (Pandas DataFrame): original + predicted values
     """
     data['k1']=0
-#    data['k2']=0
-
     for i in range(0,55):
         if i >= 1:
             data['k1'][i]=data['WYTCP'][i-1]
-#        if i >=2:
-#            data['k2'][i]=data['NUETP'][i-2]
-
-    # Split data for train and test
     all_x = data[['k1','GDP','CLPRB','EMFDB','ENPRP','NGMPB','PAPRB','PCP','ZNDX','Nominal Price', 'Inflation Adjusted Price']][0:55]
     all_y = data[['WYTCP']][0:55]
     train_x, test_x, train_y, test_y = train_test_split(all_x, all_y, test_size=0.2)
@@ -100,6 +96,7 @@ def pred_wind(data):
         data['k1'][i]=data['WYTCP'][i-1]
         future_x = data[['k1','GDP','CLPRB','EMFDB','ENPRP','NGMPB','PAPRB','PCP','ZNDX','Nominal Price', 'Inflation Adjusted Price']][i:i+1]
         pred = regr2.predict(future_x)
+        #Replacing negative values with 0
         if pred < 0:
             pred = 0
         data['WYTCP'][i] = pred
@@ -119,8 +116,6 @@ def pred_hydro(data):
     for i in range(0,55):
         if i >= 1:
             data['k1'][i]=data['HYTCP'][i-1]
-
-    # Split data for train and test
     all_x = data[['k1','GDP','CLPRB','EMFDB','ENPRP','NGMPB','PAPRB','PCP','ZNDX','Nominal Price', 'Inflation Adjusted Price']][0:55]
     all_y = data[['HYTCP']][0:55]
     train_x, test_x, train_y, test_y = train_test_split(all_x, all_y, test_size=0.2)
@@ -131,6 +126,7 @@ def pred_hydro(data):
         data['k1'][i]=data['HYTCP'][i-1]
         future_x = data[['k1','GDP','CLPRB','EMFDB','ENPRP','NGMPB','PAPRB','PCP','ZNDX','Nominal Price', 'Inflation Adjusted Price']][i:i+1]
         pred = regr2.predict(future_x)
+    #Replacing negative values with 0
         if pred < 0:
             pred = 0
         data['HYTCP'][i] = pred
@@ -145,6 +141,7 @@ def ridge_predict_all():
     Returns:
             None
     """
+    #Path of Cleaned and Predicted Data
     path= os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
     path = op.join(path, 'Data')
     path_clean = op.join(path, 'Cleaned Data')
@@ -156,6 +153,7 @@ def ridge_predict_all():
     for i in statelist:
         path = op.join(path_predict, i)
         data = pd.read_csv(path)
+        #Predicting nuclear, wind. hydro and solar
         data = pred_nuclear(data)
         data = pred_hydro(data)
         data = pred_wind(data)

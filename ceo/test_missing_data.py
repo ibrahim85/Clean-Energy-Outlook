@@ -11,13 +11,26 @@ data_path = op.join(data_path, 'Cleaned Data')
 data = pd.read_csv(op.join(data_path, 'CA.csv'))
 
 def test_future_df():
+    """
+    Function to test future_df
+    Input:
+          None
+    Returns:
+            None
+    """
     data = pd.read_csv(op.join(data_path, 'CA.csv'))
     data1=md.future_df(data,[1,2,3,4,5])
     assert len(data1) == len(data) + 5, 'Rows not added'
     return
 
 def test_gdp_pred():
-    #data1=gdp_pred(data,1)
+    """
+    Function to test gdp_pred
+    Input:
+          None
+    Returns:
+            None
+    """
     data = pd.read_csv(op.join(data_path, 'WA.csv'))
     data1 = md.future_df(data,range(2017,2021))
     try:
@@ -28,6 +41,13 @@ def test_gdp_pred():
     return
 
 def test_future_pred():
+    """
+    Function to test future_pred
+    Input:
+          None
+    Returns:
+            None
+    """
     data = pd.read_csv(op.join(data_path, 'NY.csv'))
     try:
         data=md.future_pred(data,'EMFDB',0)
@@ -37,6 +57,13 @@ def test_future_pred():
     return
 
 def test_predict():
+    """
+    Function to test predict
+    Input:
+          None
+    Returns:
+            None
+    """
     path= os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
     path = op.join(path, 'Data')
     path_clean = op.join(path, 'Cleaned Data with Missing Predictors')
@@ -51,6 +78,13 @@ def test_predict():
     return
 
 def test_predict_all():
+    """
+    Function to test predict_all
+    Input:
+          None
+    Returns:
+            None
+    """
     md.predict_all()
     path= os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
     path = op.join(path, 'Data')
