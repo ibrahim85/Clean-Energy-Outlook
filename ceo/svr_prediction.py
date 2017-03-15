@@ -129,5 +129,7 @@ def SVR_predict_all():
         data = SVR_predict(data,X_train, X_test, y_train, y_test,'WYTCP')
         #Drop scaled columns
         data.drop(['GDP_scaled','CLPRB_scaled','EMFDB_scaled','ENPRP_scaled','NGMPB_scaled','PAPRB_scaled','PCP_scaled','ZNDX_scaled','OP_scaled','OP2_scaled'],inplace=True,axis=1)
+        data.rename(columns={'Unnamed: 0':'State'}, inplace=True)
+        data['State'] = state[0:2]
         data.to_csv(path_predict+'\\%s'%state, encoding='utf-8', index=False)
     return
