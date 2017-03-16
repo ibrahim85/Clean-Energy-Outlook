@@ -6,7 +6,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/uwkejia/Clean-Energy-Outlook/badge.svg?branch=master)](https://coveralls.io/github/uwkejia/Clean-Energy-Outlook?branch=master)
 [![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)]()
 
-### Due Mar. 15, 2017 at 5PM
+### Due Mar. 15, 2017 at 11:59PM
 ---
 ### Project Description
 **Clean Energy Outlook** is a software that reads in energy generation data from 1960 to 2014 of various states of the United States as well as other data like GDP, climate, oil price, and other features to predict the renewable energy generation of each state for the next 6 years (2015-2020). Software will be useful for investors and policy makers in renewable energy. Investors in clean energy can use this software to identify states where clean energy has high potential. Policy makers can also use this software to develop clean energy policies for different states.  
